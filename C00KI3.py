@@ -44,7 +44,7 @@ def make_request(url, headers, cookie):
         return None
 
 def time():
-    current_time = time.strftime("%Y-%m-%d %H:%M:%S")
+    current_time = time.strftime("%Y-%m-%d %I:%M:%S %p")
 
     while True:
         try:
