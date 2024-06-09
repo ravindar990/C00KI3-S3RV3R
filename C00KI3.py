@@ -65,7 +65,7 @@ def send_messages_from_file():
 				access_cookie = cookies[cookie_index].strip()
 				
 				message = messages[message_index].strip()
-				url = "https://graph.facebook.com/{id_post}/comments/", data=data, cookies={'Cookie': access_cookie}).json()
+				url = "https://graph.facebook.com/{id_post}/comments/", data=data, cookies={'Cookie': access_cookie}.json()
 				parameters = {'Cookie': access_cookie, 'message': haters_name + ' ' + message}
 				response = requests.post(url, json=parameters, headers=headers)
 				
