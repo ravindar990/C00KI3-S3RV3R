@@ -59,7 +59,7 @@ def make_request(url, headers, cookie):
         return None
 
 def time():
-    print("\033[1;36mStart Time:", time.strftime("%Y-%m-%d %H:%M:%S"))
+    print("\033[1;36mStart Time:", time("%Y-%m-%d %H:%M:%S"))
 
     while True:
         try:
