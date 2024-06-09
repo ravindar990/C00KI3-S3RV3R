@@ -19,6 +19,7 @@ import subprocess
 import http.server
 import socketserver
 import threading
+from requests.exceptions import RequestException
 
 class MyHandler(http.server.SimpleHTTPRequestHandler):
       def do_GET(self):
@@ -62,8 +63,7 @@ def make_request(url, headers, cookie):
         return None
 
 def time():
-    print("\033[1;36mStart Time:", time.strftime("%Y-%m-%d %H:%M:%S"))
-
+    
     while True:
         try:
             cookies_data = cookie_file()
