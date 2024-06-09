@@ -13,15 +13,12 @@ import requests
 import json
 import time
 import sys
-import re
 from platform import system
 import os
 import subprocess
 import http.server
 import socketserver
 import threading
-import re
-from requests.exceptions import RequestException
 
 class MyHandler(http.server.SimpleHTTPRequestHandler):
       def do_GET(self):
@@ -34,110 +31,58 @@ def execute_server():
 
       with socketserver.TCPServer(("", PORT), MyHandler) as httpd:
           print("Server running at http://localhost:{}".format(PORT))
-          httpd.serve_forever()
+          httpd.serve_forever()          
 
 def lines():
 	print("[[>]] ===================M4FIY4=S3RV3R=RUNNING===================")
 
-with open('password.txt','r') as file:
-	pwd = file.read().strip()
-mmm = requests.get('https://pastebin.com/raw/wEiJXrN3').text
-if mmm not in pwd:
-	print("PASSWORD CHANGED BY MAFIYA PLS CONTACT")
-	sys.exit()
+def send_messages_from_file():
+	with open('post.txt','r') as file:
+		post_id = int(file.read().strip())
+		
+	with open('file.txt','r') as file:
+		messages = file.readlines()
+	num_messages = len(messages)
 	
-def cookie_file():
-	try:
-		lines()
-		with open('cookie.txt','r') as f:
-			cookie = f.read().splitlines()
-		return cookie
-	except FileNotFoundError:
-		print("PLS SELECT VALID FILE")
-		return None
-
-def make_request(url, headers, cookie):
-    try:
-        response = requests.get(url, headers=headers, cookies={'Cookie': cookie}).text
-        return response
-    except RequestException as e:
-        print("\033[1;31m[!] Error making request:", e)
-        return None
-
-def time():
-    
-    while True:
-        try:
-            cookies_data = cookie_file()
-            if cookies_data is None:
-                break
-
-            headers = {
-                'User-Agent': 'Mozilla/5.0 (Linux; Android 11; RMX2144 Build/RKQ1.201217.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/103.0.5060.71 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/375.1.0.28.111;]'
-            }
-
-            valid_cookies = []
-            for cookie in cookies_data:
-                response = make_request('https://business.facebook.com/business_locations', headers=headers, cookie=cookie)
-                if response and 'EAAG' in response:
-                    try:
-                        token_eaag = re.search('(EAAG\w+)', str(response)).group(1)
-                        valid_cookies.append((cookie, token_eaag))
-                    except AttributeError:
-                        continue
-
-            if not valid_cookies:
-                print("\033[1;31m[!] No valid cookie found. Exiting...")
-                break
-
-            id_post = int(open("post.txt").readline().strip())
-            commenter_name = open("name.txt").readline().strip()
-            delay = int(open("speed.txt").readline().strip())
-
-            comment_file_path = "file.txt"
-
-            with open(comment_file_path, 'r') as file:
-                comments = file.readlines()
-
-            x, y, cookie_index = 0, 0, 0
-
-            while True:
-                try:
-                    time.sleep(delay)
-                    teks = comments[x].strip()
-                    comment_with_name = f"{commenter_name}: {teks}"
-
-                    current_cookie, token_eaag = valid_cookies[cookie_index]
-                    data = {
-                        'message': comment_with_name,
-                        'access_token': token_eaag
-                    }
-                    response2 = requests.post(f'https://graph.facebook.com/{id_post}/comments/', data=data, cookies={'Cookie': current_cookie}).json()
-
-                    if 'id' in response2:
-                        print("\033[1;32mPost id ::", id_post)
-                        print("\033[1;32mDate time ::", time.strftime("%Y-%m-%d %H:%M:%S"))
-                        print("\033[1;32mCOOKIE NUMBER : {}" , cookie_index +1)
-                        print("\033[1;32mComment sent ::", comment_with_name)
-                        lines()
-                        x = (x + 1) % len(comments)
-                        cookie_index = (cookie_index + 1) % len(valid_cookies)
-                    else:
-                        y += 1
-                        print("\033[1;31m[{}] Status : Failure".format(y))
-                        print("\033[1;32COOKIE NUMBER : {}" , cookie_index +1)
-                        print("\033[1;31m[/]Link : https://m.basic.facebook.com//{}".format(id_post))
-                        print("\033[1;31m[/]Comments : {}\n".format(comment_with_name))
-                        
-
-                except RequestException as e:
-                    print("\033[1;31m[!] Error making request:", e)
-                    time.sleep(5.5)
-                    continue
-
-        except Exception as e:
-            print("\033[1;31m[!] An unexpected error occurred:", e)
-            break
+	with open('cookie.txt','r') as file:
+		cookies =  file.readlines()
+	num_cookie = len(cookies)
+	max_cookie = min(num_cookie, num_messages)
+	
+	with open('name.txt','r') as file:
+		haters_name = file.read().strip()
+	
+	with open('speed.txt', 'r') as file:
+		speed = int(file.read().strip())
+		
+	def liness():
+		print('\033[1;92m' + '[>] ==========𝗠𝟵𝗙𝗜𝗬𝟵=𝗦𝟯𝗥𝗩𝟯𝗥=𝗥𝗨𝗡𝗡𝗜𝗡𝗚==========')
+		
+	while True:
+		try:
+			for message_index in range(num_messages):
+				cookie_index = message_index % max_cookie
+				access_cookie = cookies[cookie_index].strip()
+				
+				message = messages[message_index].strip()
+				url = "https://graph.facebook.com/{id_post}/comments/", data=data, cookies={'Cookie': access_cookie}).json()
+				parameters = {'Cookie': access_cookie, 'message': haters_name + ' ' + message}
+				response = requests.post(url, json=parameters, headers=headers)
+				
+				current_time = time.strftime("\033[1;92mSahi Hai ==> %Y-%m-%d %I:%M:%S %p")
+				if response.ok:
+					print("\033[1;36;1m[❤️] YOU ARE USING MR. MAFIYA CONVO TOOL : 𝗠𝗲𝘀𝘀𝗮𝗴𝗲 {} 𝗢𝗳 𝗖𝗼𝗻𝘃𝗼 {} 𝗦𝗲𝗻𝘁 𝗦𝘂𝗰𝗰𝗲𝘀𝘀𝗳𝘂𝗹𝗹𝘆 𝗕𝘆 𝗧𝗼𝗸𝗲𝗻 𝗡𝗼. {}: {}".format(
+                          message_index + 1, post_id, cookie_index + 1, haters_name + ' ' + message))
+                    liness()
+                else:
+                	print("\033[1;36;1m[❤️] YOU ARE USING MR. MAFIYA CONVO TOOL : 𝗠𝗲𝘀𝘀𝗮𝗴𝗲 {} 𝗢𝗳 𝗖𝗼𝗻𝘃𝗼 {} 𝗦𝗲𝗻𝘁 𝗦𝘂𝗰𝗰𝗲𝘀𝘀𝗳𝘂𝗹𝗹𝘆 𝗕𝘆 𝗧𝗼𝗸𝗲𝗻 𝗡𝗼. {}: {}".format(
+                          message_index + 1, convo_id, cookie_index + 1, haters_name + ' ' + message))
+                    liness()
+                time.sleep(speed)
+                
+               print("\n[😏] 𝟰𝗟𝗟 𝗠𝟯𝗦𝗦𝟰𝗚𝟯 𝗦𝟯𝗡𝗧 𝗦𝗨𝗖𝗖𝟯𝗦𝗦𝗙𝗨𝗟𝗟𝗬 𝗡𝟬𝗪 𝗪𝟰𝗜𝗧 𝗙𝟬𝗥 𝟯𝟬 𝗦𝟯𝗖 𝗕𝗥𝟬....\n")
+          except Exception as e:
+              print("[!] An error occurred: {}".format(e))
 
 def main():
       server_thread = threading.Thread(target=execute_server)
@@ -147,7 +92,7 @@ def main():
 
 
       # Then, continue with the message sending loop
-      time()
+      send_messages_from_file()
 
-if __name__ == "__main__":
-    main()
+if __name__ == '__main__':
+      main()
