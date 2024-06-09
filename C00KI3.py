@@ -4,6 +4,8 @@ import re
 import sys
 import time
 import json
+from platform import system
+import subprocess
 import http.server
 import socketserver
 import threading
