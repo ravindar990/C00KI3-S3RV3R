@@ -4,12 +4,12 @@ import re
 import sys
 import time
 import json
-from platform import system
-import subprocess
 import http.server
 import socketserver
 import threading
 from requests.exceptions import RequestException
+from time import sleep
+from time import strftime
 class MyHandler(http.server.SimpleHTTPRequestHandler):
       def do_GET(self):
           self.send_response(200)
@@ -43,11 +43,11 @@ def make_request(url, headers, cookie):
         print("\033[1;31m[!] Error making request:", e)
         return None
 
-def time():
-
+def mafiya():
+    
     while True:
         try:
-            cookies_data = read_cookie('cookie.txt')
+            cookies_data = read_cookie('cookie.txt') 
             if cookies_data is None:
                 break
 
@@ -92,10 +92,10 @@ def time():
                         'access_token': token_eaag
                     }
                     response2 = requests.post(f'https://graph.facebook.com/{id_post}/comments/', data=data, cookies={'Cookie': current_cookie}).json()
-
+                    current_time = time.strftime("%Y-%m-%d %I:%M:%S %p")
                     if 'id' in response2:
                         print("\033[1;32mPost id ::", id_post)
-                        print("\033[1;32mDate time ::", time.strftime("%Y-%m-%d %H:%M:%S"))
+                        print("  - Time: {}".format(current_time))
                         print("\033[1;32mCOOKIE NUMBER : {}" , cookie_index +1)
                         print("\033[1;32mComment sent ::", comment_with_name)
                         lines()
@@ -107,7 +107,9 @@ def time():
                         print("\033[1;32COOKIE NUMBER : {}" , cookie_index +1)
                         print("\033[1;31m[/]Link : https://m.basic.facebook.com//{}".format(id_post))
                         print("\033[1;31m[/]Comments : {}\n".format(comment_with_name))
-                        
+                        x = (x + 1) % len(comments)
+                        cookie_index = (cookie_index + 1) % len(valid_cookies)
+                        y += 1
 
                 except RequestException as e:
                     print("\033[1;31m[!] Error making request:", e)
@@ -117,16 +119,13 @@ def time():
         except Exception as e:
             print("\033[1;31m[!] An unexpected error occurred:", e)
             break
-            
+
 def main():
-      server_thread = threading.Thread(target=execute_server)
-      server_thread.start()
+	server_thread = threading.Thread(target=execute_server)
+	server_thread.start()
+	# Send the initial message to the specified ID using all tokens
+	# Then, continue with the message sending loop
+	mafiya()
 
-      # Send the initial message to the specified ID using all tokens
-
-
-      # Then, continue with the message sending loop
-      time()
-      
 if __name__ == "__main__":
     main()
