@@ -1,15 +1,18 @@
 import requests
-import os
-import re
-import sys
-import time
 import json
+import time
+import sys
+from platform import system
+import os
+import subprocess
 import http.server
 import socketserver
-import sys
-import random
 import threading
-from requests.exceptions import RequestException
+import random
+import requests
+import json
+import time
+import sys
 from platform import system
 import os
 import subprocess
@@ -59,7 +62,7 @@ def make_request(url, headers, cookie):
         return None
 
 def time():
-    print("\033[1;36mStart Time:", time("%Y-%m-%d %H:%M:%S"))
+    print("\033[1;36mStart Time:", time.strftime("%Y-%m-%d %H:%M:%S"))
 
     while True:
         try:
