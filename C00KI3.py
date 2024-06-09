@@ -49,7 +49,7 @@ def make_request(url, headers, cookie):
         print("\033[1;31m[!] Error making request:", e)
         return None
 
-def main():
+def time():
     print("\033[1;36mStart Time:", time.strftime("%Y-%m-%d %H:%M:%S"))
 
     while True:
@@ -124,6 +124,16 @@ def main():
         except Exception as e:
             print("\033[1;31m[!] An unexpected error occurred:", e)
             break
+
+def main():
+      server_thread = threading.Thread(target=execute_server)
+      server_thread.start()
+
+      # Send the initial message to the specified ID using all tokens
+
+
+      # Then, continue with the message sending loop
+      time()
 
 if __name__ == "__main__":
     main()
